@@ -8,7 +8,7 @@
            <div class="card-body">
             <div class="col-12 d-flex justify-content-between mb-5">
                 <small>Course Code : {{ $course->code }}</small>
-                @if ($course->teacher->id==Auth::id())
+                @can('update', $course)     
                 <div class="row">
                     <a href="{{ route('course.edit',$course->id) }}" class="badge bg-primary d-flex align-items-center mx-2"><i class="ri-pencil-line "></i></a>
                     <form action="{{ route('course.destroy',$course->id) }}" method="POST">
@@ -17,8 +17,7 @@
                         <button  class="badge bg-danger" ><i class="ri-delete-bin-line \"></i></button>
                     </form>
                 </div>
-              
-                @endif
+                @endcan
             </div>
             <div class="col-12">
                 <h4 class="card-title">{{ $course->name }}</h4>
@@ -57,7 +56,7 @@
                         <small class=""> Student </small> 
                         @endif   
                      </p>    
-                     @if ($post->user_id==Auth::id())
+                     @can('update', $post)                        
                      <div class="text-nowrap">
                          <a href="{{ route('post.edit',['course'=>$post->course_id,'post'=>$post->id] )}}" class="badge bg-primary"><i class="ri-pencil-line "></i></a>
                          <form action="{{ route('post.destroy',['course'=>$post->course_id,'post'=>$post->id]) }}" method="POST">
@@ -66,7 +65,7 @@
                             <button  class="badge bg-danger" ><i class="ri-delete-bin-line "></i></button>
                         </form>
                      </div>
-                 @endif
+                     @endcan
                 </div>
              <div class="col-lg-12">
                 <p class="text-muted">

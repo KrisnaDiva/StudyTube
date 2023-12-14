@@ -114,16 +114,16 @@
         </div>
     </div>
     <div class="col-md-1 col-2 d-flex justify-content-end">
-        @if ($comment->user_id==Auth::id())
-            <div class="text-nowrap">
-                <button  class="badge bg-primary" onclick="enableInput({{ $comment->id }})"><i class="ri-pencil-line "></i></button>
-                <form action="{{ route('comment.destroy',['course'=>$post->course_id,'post'=>$post->id,'comment'=>$comment->id]) }}" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button  class="badge bg-danger" ><i class="ri-delete-bin-line "></i></button>
-                </form>
-            </div>
-        @endif
+        @can('update', $comment)         
+        <div class="text-nowrap">
+            <button  class="badge bg-primary" onclick="enableInput({{ $comment->id }})"><i class="ri-pencil-line "></i></button>
+            <form action="{{ route('comment.destroy',['course'=>$post->course_id,'post'=>$post->id,'comment'=>$comment->id]) }}" method="POST">
+                @method('delete')
+                @csrf
+                <button  class="badge bg-danger" ><i class="ri-delete-bin-line "></i></button>
+            </form>
+        </div>
+        @endcan
     </div>
     
    
@@ -169,16 +169,16 @@
     </form>
     </div>
     <div class="col-md-1 col-2 d-flex justify-content-end">
-        @if ($reply->user_id==Auth::id())
-            <div class="text-nowrap">
-                <button  class="badge bg-primary" onclick="enableReplyInput({{ $reply->id }})"><i class="ri-pencil-line "></i></button>
-                <form action="{{ route('reply.destroy',['course'=>$post->course_id,'post'=>$post->id,'comment'=>$comment->id,'reply'=>$reply->id]) }}" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button  class="badge bg-danger" ><i class="ri-delete-bin-line "></i></button>
-                </form>
-            </div>
-        @endif
+        @can('update', $reply)           
+        <div class="text-nowrap">
+            <button  class="badge bg-primary" onclick="enableReplyInput({{ $reply->id }})"><i class="ri-pencil-line "></i></button>
+            <form action="{{ route('reply.destroy',['course'=>$post->course_id,'post'=>$post->id,'comment'=>$comment->id,'reply'=>$reply->id]) }}" method="POST">
+                @method('delete')
+                @csrf
+                <button  class="badge bg-danger" ><i class="ri-delete-bin-line "></i></button>
+            </form>
+        </div>
+        @endcan
     </div>
 </div>
     
