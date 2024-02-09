@@ -6,7 +6,7 @@
              <div class="hover-circle"><i class="ri-menu-line"></i></div>
           </div>
        </div>
-       <a href="index.html" class="">
+       <a href="{{ route('home') }}" class="">
           <span>StudyTube</span>
        </a>
     </div>
